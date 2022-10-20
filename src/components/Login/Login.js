@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useReducer, useContext, useRef } from 'react';
-
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
@@ -46,12 +45,7 @@ const passwordReducer = (state, action) => {
   };
 }
 
-const Login = (props) => {
-  // const [enteredEmail, setEnteredEmail] = useState('');
-  // const [emailIsValid, setEmailIsValid] = useState();
-  // const [enteredPassword, setEnteredPassword] = useState('');
-  // const [passwordIsValid, setPasswordIsValid] = useState();
-
+const Login = () => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
@@ -95,39 +89,11 @@ const Login = (props) => {
   }, [emailIsValid, passwordIsValid]);
 
 
-
-  // useEffect(() => {
-  //   const identifier = setTimeout(() => {
-  //     console.log('Checking form validity!')
-  //     setFormIsValid(
-  //       enteredEmail
-  //       .includes('@') && enteredPassword
-  //       .trim().length > 6
-  //     );
-      
-  //   }, 500);
-
-  //   return () => {
-  //     console.log('cleanup!');
-  //     clearTimeout(identifier);
-  //   };
-
-  // }, [enteredEmail, enteredPassword]);
-  
-
-
   const emailChangeHandler = (event) => {
     dispatchEmail({
       type: 'USER_INPUT', 
       val: event.target.value
     });
-
-    // setEnteredEmail(event.target.value);
-
-    // setFormIsValid(
-    //   event.target.value
-    //     .includes('@') && passwordState.isValid
-    // );
   };
 
   const passwordChangeHandler = (event) => {
@@ -136,11 +102,8 @@ const Login = (props) => {
       val: event.target.value
     })
 
-    // setEnteredPassword(event.target.value); // starter code
-
     setFormIsValid(
       emailState.isValid && event.target.value.trim().length > 6
-      // event.target.value.trim().length > 6 && enteredEmail.includes('@')
     );
   };
 
@@ -148,15 +111,12 @@ const Login = (props) => {
     dispatchEmail({
       type: 'INPUT_BLUR'
     });
-    // setEmailIsValid(emailState.isValid); //useReducer starter code
-    // setEmailIsValid(enteredEmail.includes('@')); - //starter code
   };
 
   const validatePasswordHandler = () => {
     dispatchPassword({
       type: 'INPUT_BLUR'
     });
-    // setPasswordIsValid(enteredPassword.trim().length > 6); // starter code
   };
 
   const submitHandler = (event) => {
@@ -169,7 +129,6 @@ const Login = (props) => {
       passwordInputRef.current.focus();
 
     }
-    // props.onLogin(enteredEmail, enteredPassword);
   };
 
   return (

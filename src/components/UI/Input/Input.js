@@ -14,10 +14,6 @@ const Input = React.forwardRef((props, ref) => {
     };
   });
 
-  // useEffect(() => {
-  //   inputRef.current.focus();
-  // }, []);
-
  return (
   <div className={`${classes.control} 
     ${props.isValid === false ? classes.invalid : '' }`}>
